@@ -24,7 +24,9 @@ def respond(request, word, response):
     except ValueError:
         session = 0
     ip = request.META['REMOTE_ADDR']
+    response = response.strip()
+    visible = not any(p.match(response) for p in settings.PROFANITIES_LIST)
     #if WordResponse.objects.filter(word=word, ip=ip).count() <= 5: # protect vs the most mindless spam
-    WordResponse.objects.create(word=word, ip=ip, session=session, response=response, visible=response not in settings.PROFANITIES_LIST)
+    WordResponse.objects.create(word=word, ip=ip, session=session, response=response, visible=visible)
     data = WordResponse.objects.filter(word=word, visible=True).values('response').annotate(count=Count('response')).order_by('-count')[:5]
     return HttpResponse(json.dumps(list(data)))

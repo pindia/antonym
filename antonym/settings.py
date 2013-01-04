@@ -130,6 +130,13 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
 )
 
+PROFANITIES_LIST = ['.*shpx.*', '.*fuvg.*', '.*cravf.*', '.*intvan.*' 'pbpx', 'cvff', '.*avttre.*', 'ovgpu', 'phag', 'penc', 'qvpx', 'qbhpur', 'snttbg', 'fyhg', 'frzra', 'fxnax', 'obbo', 'juber']
+import string, re
+rot13 = string.maketrans(
+    "abcdefghijklmnopqrstuvwxyz",
+    "nopqrstuvwxyzabcdefghijklm")
+PROFANITIES_LIST = [re.compile(string.translate(s, rot13)) for s in PROFANITIES_LIST]
+
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
 # the site admins on every HTTP 500 error when DEBUG=False.
