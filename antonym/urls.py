@@ -16,6 +16,6 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', 'antonym.views.index'),
     url(r'^add$', 'antonym.views.add'),
-    url(r'^list$', 'antonym.views.list'),
+    url(r'^list$', 'antonym.views.word_list'),
     url(r'^respond/([a-z ]+)/([a-z ]+)$', 'antonym.views.respond'),
 )

@@ -21,7 +21,7 @@ def add(request):
         return render_template('add.html', request, submitted=True)
     return render_template('add.html', request)
 
-def list(request):
+def word_list(request):
     words = Word.objects.all().order_by('name')
     return render_template('list.html', request, words=words)
 
