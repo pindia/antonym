@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block body %}
+    <div id="header" class="center">
+        <h1>Word List</h1>
+    </div>
+    <div id="instructions" class="center" style="text-align: left; padding-left: 200px;">
+        <ul>
+            {% for word in words %}
+                <li>{{word.name}}</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

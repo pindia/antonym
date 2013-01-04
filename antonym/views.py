@@ -17,7 +17,13 @@ def index(request):
     return render_template('index.html', request, words=words)
 
 def add(request):
+    if request.method == 'POST':
+        return render_template('add.html', request, submitted=True)
     return render_template('add.html', request)
+
+def list(request):
+    words = Word.objects.all().order_by('name')
+    return render_template('list.html', request, words=words)
 
 @csrf_exempt
 def respond(request, word, response):
