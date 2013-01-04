@@ -1,0 +1,23 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>The Antonym Game</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    {% include 'style.html' %}
+
+    {% block head %}
+
+    {% endblock %}
+
+</head>
+<body>
+    <div class="container">
+        {% block body %}
+
+        {% endblock %}
+        <div id="footer" class="center">
+            <a href="{% url antonym.views.add %}">add word</a> &bull; by <a href="http://www.pindi.us">Pindi Albert</a> &bull; <a href="http://www.github.com/pindia/antonym">open source</a>
+        </div>
+    </div>
+</body>
+</html>

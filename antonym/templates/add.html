@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block body %}
+    <div id="header" class="center">
+        <h1>Add Word</h1>
+    </div>
+    <div id="instructions" class="center">
+        A good word for this game has <i>multiple</i> plausible antonyms, otherwise where's the fun? For inspiration,
+        check out the <a href="#">current word list</a>.
+    </div>
+    <div id="input" class="center" style="margin-top: 20px;">
+        <form>
+            <input type="text" id="submission"><br>
+            <input type="submit" id="submit" value="Submit" style="margin-top: 10px;">
+        </form>
+    </div>
+{% endblock %}

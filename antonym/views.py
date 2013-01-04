@@ -16,6 +16,9 @@ def index(request):
     words = Word.objects.all()
     return render_template('index.html', request, words=words)
 
+def add(request):
+    return render_template('add.html', request)
+
 @csrf_exempt
 def respond(request, word, response):
     word = Word.objects.get(name=word)
