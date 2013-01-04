@@ -24,6 +24,8 @@ def respond(request, word, response):
     except ValueError:
         session = 0
     ip = request.META['REMOTE_ADDR']
+    if request.META['HTTP_X_FORWARDED_FOR']:
+        ip = request.META['HTTP_X_FORWARDED_FOR'].split(',')[0].strip()
     response = response.strip()
     visible = not any(p.match(response) for p in settings.PROFANITIES_LIST)
     #if WordResponse.objects.filter(word=word, ip=ip).count() <= 5: # protect vs the most mindless spam
