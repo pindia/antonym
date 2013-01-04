@@ -4,6 +4,7 @@
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
         <script>
             var wordList = [{% for word in words %}'{{word.name}}'{% if not forloop.last %},{% endif %}{% endfor %}];
+            var session = parseInt(Math.random()*10000000);
             function pickWord(){
                 var word = wordList[parseInt(Math.random()*wordList.length)];
                 $('#next').hide();
@@ -26,6 +27,7 @@
                         type: 'post',
                         url: '/respond/' + $('#word').text() + '/' + response,
                         dataType: 'json',
+                        data: {session: session},
                         success: function(data){
                             var count = 0;
                             for(var i=0; i<data.length; i++){

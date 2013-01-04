@@ -20,11 +20,11 @@ def index(request):
 def respond(request, word, response):
     word = Word.objects.get(name=word)
     try:
-        session = int(request.GET.get('session', 0))
+        session = int(request.REQUEST.get('session', 0))
     except ValueError:
         session = 0
     ip = request.META['REMOTE_ADDR']
-    if request.META['HTTP_X_FORWARDED_FOR']:
+    if request.META.get('HTTP_X_FORWARDED_FOR'):
         ip = request.META['HTTP_X_FORWARDED_FOR'].split(',')[0].strip()
     response = response.strip()
     visible = not any(p.match(response) for p in settings.PROFANITIES_LIST)
