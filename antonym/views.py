@@ -13,16 +13,19 @@ def render_template(template, request, **kwds):
     return render_to_response(template, kwds, context_instance=RequestContext(request))
 
 def index(request):
-    words = Word.objects.all()
+    words = Word.objects.filter(status=Word.STATUS_ACTIVE)
     return render_template('index.html', request, words=words)
 
 def add(request):
     if request.method == 'POST':
+        word = request.POST['word']
+        status = Word.STATUS_REJECTED if any(p.match(word) for p in settings.PROFANITIES_LIST) else Word.STATUS_NEW
+        Word.objects.get_or_create(name=word, defaults={'status': status})
         return render_template('add.html', request, submitted=True)
     return render_template('add.html', request)
 
 def word_list(request):
-    words = Word.objects.all().order_by('name')
+    words = Word.objects.filter(status=Word.STATUS_ACTIVE).order_by('name')
     return render_template('list.html', request, words=words)
 
 @csrf_exempt
